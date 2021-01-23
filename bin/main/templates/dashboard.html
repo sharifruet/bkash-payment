@@ -1,1 +1,105 @@
-<h1>Welcome to bKash Payment </h1>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Data Viewer</title>
+    
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+     
+   <link rel="stylesheet" type="text/css" href=" https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"/>
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css"/>
+    
+    <style type="text/css">
+    	* {
+			box-sizing: border-box;
+		}
+		
+		body, html {
+			margin: 0px; 
+			padding: 0px;
+			height: 100%;
+			font-family: sans-serif;
+		}
+		
+		ul {
+		  list-style-type: none;
+		  margin: 4;
+		  padding: 0;
+		  overflow: hidden;
+		  background-color: #333;
+		}
+		
+		li {
+		  display: block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		}
+
+
+    </style>
+
+</head>
+<body>
+
+<ul>
+  <li style="float:left;"><h1>bKash Payments</h1></li>
+  <li style="float:right;"><h3>bKash Payments</h3></li>
+</ul>
+
+<table id="tab" class="display">
+<thead>
+    <tr>
+        <th th:text="'ID'"></th>
+        <th th:text="'Date'"></th>
+        <th th:text="'MSISDN'"></th>
+        <th th:text="'Organization'"></th>
+        <th th:text="'Org. Code'"></th>
+        <th th:text="'Tx ID'"></th>
+        <th th:text="'Tx Status'"></th>
+        <th th:text="'Tx Type'"></th>
+        <th th:text="'Amount'"></th>
+        <th th:text="'Currency'"></th>
+        <th th:text="'Tx Reference'"></th>
+    </tr>
+</thead>
+<tbody>
+    <tr th:each="payment : ${payments}">
+        <td th:text="${payment.paymentBody.id}"></td>
+        <td th:text="${payment.paymentBody.dateTime}"></td>
+        <td th:text="${payment.paymentBody.debitMSISDN}"></td>
+        <td th:text="${payment.paymentBody.creditOrganizationName}"></td>
+        <td th:text="${payment.paymentBody.creditShortCode}"></td>
+        <td th:text="${payment.paymentBody.trxID}"></td>
+        <td th:text="${payment.paymentBody.transactionStatus}"></td>
+        <td th:text="${payment.paymentBody.transactionType}"></td>
+        <td th:text="${payment.paymentBody.amount}"></td>
+        <td th:text="${payment.paymentBody.currency}"></td>
+        <td th:text="${payment.paymentBody.transactionReference}"></td>
+    </tr>
+</tbody>
+</table>
+<script>
+$(document).ready(function() {
+    $('#tab').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+
+</script>
+</body>
+</html>
