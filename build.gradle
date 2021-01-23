@@ -1,0 +1,41 @@
+plugins {
+	id 'org.springframework.boot' version '2.4.2'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'com.i2gether.beximcom.bkashpayment'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+	compile 'org.springframework.boot:spring-boot-starter-validation'
+	compile 'com.google.code.gson:gson'
+	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
+	
+	runtimeOnly 'mysql:mysql-connector-java'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+test {
+	useJUnitPlatform()
+}
