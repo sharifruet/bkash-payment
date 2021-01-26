@@ -28,7 +28,7 @@ dependencies {
 	compile 'com.google.code.gson:gson'
 	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.9'
 	
-	runtimeOnly 'mysql:mysql-connector-java'
+	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
